@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.heejae.tenniverse.persentation.home.user.MyPageViewModel" />
+        <variable
+            name="glide"
+            type="com.bumptech.glide.RequestManager" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_begin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_end"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="20dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    style="@style/style_back_btn"
+                    android:layout_marginStart="16dp"
+                    android:backgroundTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_title" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/style_top_title"
+                    android:text="@string/my_page"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_profile_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/ic_border_my_page_profile"
+                    android:padding="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+                    <ImageView
+                        android:id="@+id/iv_profile"
+                        android:layout_width="78dp"
+                        android:layout_height="78dp"
+                        app:setGlide="@{glide}"
+                        app:setUri="@{viewModel.userModel.profileUrl}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_name_gender"
+                        style="@style/style_text"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/noto_sans_bold"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:text="@{@string/profile_name_gender(viewModel.userModel.displayName, context.getString(viewModel.userModel.gender.kor))}"
+                        app:layout_constraintStart_toEndOf="@id/iv_profile"
+                        app:layout_constraintTop_toTopOf="@id/iv_profile"
+                        tools:text="이준형 / 남성" />
+
+                    <TextView
+                        android:id="@+id/tv_career"
+                        style="@style/style_text"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/noto_sans_regular"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@{@string/profile_tennis_career(viewModel.userModel.career)}"
+                        app:layout_constraintStart_toStartOf="@id/tv_name_gender"
+                        app:layout_constraintTop_toBottomOf="@id/tv_name_gender"
+                        tools:text="테니스 구력 1년" />
+
+                    <TextView
+                        android:id="@+id/tv_phone"
+                        style="@style/style_text"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/noto_sans_regular"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"
+                        android:text="@{@string/profile_phone(viewModel.userModel.phoneNumber)}"
+                        app:layout_constraintStart_toStartOf="@id/tv_name_gender"
+                        app:layout_constraintTop_toBottomOf="@id/tv_career"
+                        tools:text="연락처 01036153247" />
+
+                    <ImageView
+                        android:id="@+id/iv_edit_profile"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_edit"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/iv_profile" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_alarm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintTop_toBottomOf="@id/cl_profile">
+
+                <TextView
+                    android:id="@+id/tv_alarm"
+                    style="@style/style_text"
+                    android:layout_width="0dp"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:layout_weight="1"
+                    android:text="@string/setting_alarm"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/guide_begin"
+                    app:layout_constraintTop_toBottomOf="@id/cl_profile" />
+
+                <ImageView
+                    android:id="@+id/iv_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/arrow_gray"
+                    android:src="@drawable/ic_arrow_right_2"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_alarm"
+                    app:layout_constraintEnd_toEndOf="@id/guide_end"
+                    app:layout_constraintTop_toTopOf="@id/tv_alarm" />
+
+            </LinearLayout>
+
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/div_alarm"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:alpha="0.3"
+                android:background="@color/divider_gray"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/ll_alarm" />
+
+            <LinearLayout
+                android:id="@+id/ll_logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/div_alarm">
+
+
+                <TextView
+                    android:id="@+id/tv_logout"
+                    style="@style/style_text"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:text="@string/logout"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/guide_begin"
+                    app:layout_constraintTop_toBottomOf="@id/div_alarm" />
+
+                <ImageView
+                    android:id="@+id/iv_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/arrow_gray"
+                    android:src="@drawable/ic_arrow_right_2"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_logout"
+                    app:layout_constraintEnd_toEndOf="@id/guide_end"
+                    app:layout_constraintTop_toTopOf="@id/tv_logout" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/div_logout"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:alpha="0.3"
+                android:background="@color/divider_gray"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/ll_logout" />
+
+            <LinearLayout
+                android:id="@+id/ll_delete_user"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/div_logout">
+
+
+                <TextView
+                    android:id="@+id/tv_delete_user"
+                    style="@style/style_text"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:text="@string/delete_user"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_delete_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/arrow_gray"
+                    android:src="@drawable/ic_arrow_right_2" />
+
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/div_delete_user"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:alpha="0.3"
+                android:background="@color/divider_gray"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/ll_delete_user" />
+
+
+            <ImageView
+                android:id="@+id/iv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/arrow_gray"
+                android:src="@drawable/ic_arrow_left_calendar"
+                android:onClick="@{() -> viewModel.prevMonth()}"
+                android:layout_marginTop="40dp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toStartOf="@id/tv_date"
+                app:layout_constraintTop_toBottomOf="@id/div_delete_user"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"/>
+
+            <TextView
+                android:id="@+id/tv_date"
+                style="@style/style_text"
+                android:fontFamily="@font/noto_sans_bold"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:text="@{@string/profile_date_format(viewModel.year, viewModel.month)}"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintStart_toEndOf="@id/iv_left"
+                app:layout_constraintEnd_toStartOf="@id/iv_right"
+                app:layout_constraintTop_toTopOf="@id/iv_left"
+                app:layout_constraintBottom_toBottomOf="@id/iv_left" />
+
+
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/arrow_gray"
+                android:onClick="@{() -> viewModel.nextMonth()}"
+                app:layout_constraintTop_toTopOf="@id/iv_left"
+                app:layout_constraintStart_toEndOf="@id/tv_date"
+                android:src="@drawable/ic_arrow_right_calendar"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"/>
+
+            <TextView
+                android:id="@+id/tv_total_count"
+                style="@style/style_text"
+                android:fontFamily="@font/noto_sans_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:text="@{@string/mypage_rent_total(viewModel.reservations.size())}"
+                tools:text="총 8회"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/tv_date"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_rent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_total_count"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

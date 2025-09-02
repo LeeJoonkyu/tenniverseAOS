@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_margin">12dp</dimen>
+    <dimen name="rent_title_default_top">20dp</dimen>
+    <dimen name="rent_title_nothing_top">20dp</dimen>
+</resources>

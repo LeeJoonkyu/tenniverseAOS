@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="style_font">
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="style_text" parent="style_font">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="style_text_clickable" parent="style_text">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+    <style name="style_text_rent_type" parent="style_text">
+        <item name="android:textSize">10sp</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:background">@drawable/ic_border_game_type</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:fontFamily">@font/sc_dream_5</item>
+
+    </style>
+
+    <style name="style_btn" parent="style_font">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">62dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginBottom">48dp</item>
+    </style>
+
+    <style name="style_login_next_btn" parent="style_btn">
+        <item name="android:text">@string/next</item>
+        <item name="android:fontFamily">@font/noto_sans_bold</item>
+        <item name="android:layout_marginBottom">48dp</item>
+    </style>
+
+    <style name="style_home_btn" parent="style_btn">
+        <item name="cornerRadius">6dp</item>
+        <item name="android:fontFamily">@font/sc_dream_3</item>
+    </style>
+
+    <style name="style_profile_gender" parent="style_text">
+        <item name="cornerRadius">6dp</item>
+        <item name="android:fontFamily">@font/noto_sans_regular</item>
+    </style>
+
+    <style name="style_calendar_text" parent="style_text">
+        <item name="fontFamily">@font/noto_sans_regular</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:background">@drawable/ic_border_calendar</item>
+    </style>
+
+    <style name="style_item_name" parent="style_text">
+        <item name="fontFamily">@font/noto_sans_bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="style_rent_text" parent="style_text">
+        <item name="fontFamily">@font/noto_sans_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+
+    <style name="style_item_gender" parent="style_text">
+        <item name="fontFamily">@font/sc_dream_8</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:background">@drawable/ic_border_gender</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingEnd">10dp</item>
+    </style>
+
+    <style name="style_item_rate" parent="style_text">
+        <item name="fontFamily">@font/sc_dream_3</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/ic_border_user_rate</item>
+        <item name="android:paddingStart">13dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingEnd">13dp</item>
+    </style>
+
+    <style name="style_login_input_text" parent="style_text">
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/noto_sans_semi_bold</item>
+        <item name="android:layout_marginTop">32dp</item>
+    </style>
+
+    <style name="style_input_layout" parent="style_font">
+        <item name="android:layout_width">0dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="boxStrokeColor">@color/text_input_layout_color</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+    <style name="style_input_login_layout" parent="style_input_layout">
+        <item name="android:layout_height">62dp</item>
+    </style>
+
+    <style name="style_input_rent_layout" parent="style_input_layout">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name="style_input_drop_down_layout" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+    </style>
+
+    <style name="style_input_edit" parent="style_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/noto_sans_light</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/sub_light_gray</item>
+    </style>
+
+    <style name="Widget.App.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextAppearance">@style/TextAppearance.App.Button</item>
+    </style>
+
+    <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/sc_dream_8</item>
+        <item name="android:fontFamily">@font/sc_dream_8</item>
+    </style>
+
+
+    <style name="style_back_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/ic_back</item>
+    </style>
+
+    <style name="style_top_title" parent="style_text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/sc_dream_8</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+    </style>
+
+    <style name="style_">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/ic_back</item>
+    </style>
+
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerRadius">6dp</item>
+    </style>
+
+
+    <style name="style_rent_edit_container">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:gravity">end</item>
+        <item name="hintEnabled">false</item>
+        <item name="android:background">@drawable/ic_border_edit_text</item>
+    </style>
+
+    <style name="style_rent_edit_text" parent="style_font">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:fontFamily">@font/noto_sans_bold</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">end</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="style_rent_edit_end_text" parent="style_text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/noto_sans_bold</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    
+    <!-- TextInput Style -->
+    
+    <style name="ThemeOverlay.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/text_input_layout_color</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="endIconDrawable">@drawable/ic_drop_down</item>
+        <item name="endIconTint">@color/sub_light_drop_down_gray</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <!-- Popup Menu -->
+
+    <style name="Widget.App.PopupMenu" parent="Widget.MaterialComponents.PopupMenu">
+        <item name="android:popupBackground">@drawable/ic_custom_popup_background</item>
+    </style>
+    
+    <style name="PopupMenuStyle">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <!-- Date Picket -->
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorOnPrimary">@color/backgroundColor</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+    </style>
+
+    <style name="Widget.App.TimePicker.Clock" parent="@style/ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorOnPrimary">@color/backgroundColor</item>
+    </style>
+</resources>

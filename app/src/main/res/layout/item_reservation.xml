@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.heejae.tenniverse.domain.model.RentModel" />
+
+        <variable
+            name="glide"
+            type="com.bumptech.glide.RequestManager" />
+
+        <variable
+            name="idx"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_tennis_court"
+            setGlide="@{glide}"
+            setIdx="@{idx}"
+            android:layout_width="264dp"
+            android:layout_height="162dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_op"
+            style="@style/style_text"
+            android:layout_margin="8dp"
+            android:background="@drawable/ic_border_game_type"
+            android:fontFamily="@font/sc_dream_5"
+            android:text="@{context.getString(item.type.kor)}"
+            android:textColor="@color/green"
+            android:textSize="10sp"
+            android:padding="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="일일 대관" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/style_text"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="7dp"
+            android:text="@{item.location}"
+            android:fontFamily="@font/noto_sans_bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_tennis_court"
+            tools:text="매헌시민의테니스장" />
+
+        <ImageView
+            android:id="@+id/iv_date"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/style_text"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/noto_sans_light"
+            android:textColor="@color/black_gray"
+            android:textSize="14sp"
+            android:text="@{@string/dateFormat(item.month, item.day, item.dayOfWeek.title)}"
+            app:layout_constraintBottom_toBottomOf="@id/iv_date"
+            app:layout_constraintStart_toEndOf="@id/iv_date"
+            app:layout_constraintTop_toTopOf="@id/iv_date"
+            tools:text="12월 17일 (토)" />
+
+        <ImageView
+            android:id="@+id/iv_clock"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="11dp"
+            android:src="@drawable/ic_clock"
+            app:layout_constraintBottom_toBottomOf="@id/iv_date"
+            app:layout_constraintStart_toEndOf="@id/tv_date"
+            app:layout_constraintTop_toTopOf="@id/iv_date" />
+
+        <TextView
+            android:id="@+id/tv_clock"
+            style="@style/style_text"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/noto_sans_light"
+            android:textColor="@color/black_gray"
+            android:textSize="14sp"
+            android:text="@{@string/hourFormat(item.dayTime.title, item.startAt, item.endAt)}"
+            app:layout_constraintBottom_toBottomOf="@id/iv_clock"
+            app:layout_constraintStart_toEndOf="@id/iv_clock"
+            app:layout_constraintTop_toTopOf="@id/iv_clock"
+            tools:text="오후 6:00 ~ 8:00" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

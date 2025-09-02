@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.heejae.tenniverse.domain.model.GenderType"/>
+        <variable
+            name="viewModel"
+            type="com.heejae.tenniverse.persentation.home.user.profile.ProfileViewModel" />
+        <variable
+            name="glide"
+            type="com.bumptech.glide.RequestManager" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_begin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_end"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.profileImg.length() != 0 ? View.GONE : View.VISIBLE}"
+            app:constraint_referenced_ids="iv_plus, tv_profile_add"/>
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="26dp"
+            android:layout_height="32dp"
+            android:backgroundTint="@color/black"
+            android:src="@drawable/ic_x"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            app:layout_constraintTop_toTopOf="@id/tv_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_title"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/style_top_title"
+            android:text="@string/edit_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guide_begin"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"/>
+
+        <ImageView
+            android:id="@+id/iv_profile_img"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:adjustViewBounds="true"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginTop="50dp"
+            app:setGlide="@{glide}"
+            app:setUri="@{viewModel.profileImg}"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintStart_toStartOf="@id/guide_begin"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"/>
+
+        <ImageView
+            android:id="@+id/iv_plus"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintTop_toTopOf="@id/iv_profile_img"
+            app:layout_constraintStart_toStartOf="@id/iv_profile_img"
+            app:layout_constraintEnd_toEndOf="@id/iv_profile_img"
+            app:layout_constraintBottom_toBottomOf="@id/iv_profile_img"/>
+
+        <TextView
+            android:id="@+id/tv_profile_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:text="@string/add_profile"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/iv_plus"
+            app:layout_constraintStart_toStartOf="@id/iv_profile_img"
+            app:layout_constraintEnd_toEndOf="@id/iv_profile_img"/>
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            style="@style/style_rent_text"
+            android:text="@string/user_name"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/guide_begin"
+            app:layout_constraintTop_toBottomOf="@id/iv_profile_img" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_user_name"
+            style="@style/style_input_rent_layout"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            app:layout_constraintStart_toStartOf="@id/guide_begin"
+            app:layout_constraintTop_toBottomOf="@id/tv_user_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_user_name"
+                style="@style/style_input_edit"
+                android:text="@={viewModel.name}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_gender"
+            style="@style/style_rent_text"
+            android:layout_width="0dp"
+            android:text="@string/gender"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/guide_begin"
+            app:layout_constraintEnd_toStartOf="@id/tv_career"
+            app:layout_constraintTop_toBottomOf="@id/til_user_name" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_man"
+            style="@style/style_profile_gender"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/man_profile"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="18sp"
+            android:textColor="@{viewModel.gender == GenderType.FEMALE ? @color/btn_gender_text : @color/black}"
+            android:onClick="@{() -> viewModel.setGender(GenderType.MALE)}"
+            android:background="@{viewModel.gender == GenderType.FEMALE ? @drawable/ic_border_profile_gender : @drawable/ic_border_profile_gender_selected}"
+            app:layout_constraintStart_toStartOf="@id/guide_begin"
+            app:layout_constraintBottom_toBottomOf="@id/til_career"
+            app:layout_constraintEnd_toStartOf="@id/btn_woman"
+            app:layout_constraintTop_toBottomOf="@id/tv_gender"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_woman"
+            style="@style/style_profile_gender"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/woman_profile"
+            android:layout_marginEnd="20dp"
+            android:textSize="18sp"
+            android:textColor="@{viewModel.gender == GenderType.FEMALE ? @color/black : @color/btn_gender_text}"
+            android:onClick="@{() -> viewModel.setGender(GenderType.FEMALE)}"
+            android:background="@{viewModel.gender == GenderType.FEMALE ? @drawable/ic_border_profile_gender_selected : @drawable/ic_border_profile_gender}"
+            app:layout_constraintBottom_toBottomOf="@id/til_career"
+            app:layout_constraintStart_toEndOf="@id/btn_man"
+            app:layout_constraintEnd_toStartOf="@id/tv_career"
+            app:layout_constraintTop_toTopOf="@id/btn_man"/>
+
+        <TextView
+            android:id="@+id/tv_career"
+            style="@style/style_rent_text"
+            android:layout_width="0dp"
+            android:text="@string/tennis_career"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            app:layout_constraintStart_toEndOf="@id/tv_gender"
+            app:layout_constraintTop_toBottomOf="@id/til_user_name" />
+
+        <LinearLayout
+            android:id="@+id/til_career"
+            style="@style/style_rent_edit_container"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            app:layout_constraintStart_toStartOf="@id/tv_career"
+            app:layout_constraintTop_toBottomOf="@id/tv_career">
+
+            <EditText
+                android:id="@+id/et_max_people"
+                android:text="@={viewModel.career}"
+                style="@style/style_rent_edit_text"
+                android:inputType="number">
+            </EditText>
+
+            <TextView
+                android:id="@+id/tv_rent_max_people"
+                style="@style/style_rent_edit_end_text"
+                android:text="@string/career_year"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_standard"
+            android:layout_weight="1"
+            android:text="@string/save_edit"
+            style="@style/style_home_btn"
+            android:backgroundTint="@color/green"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

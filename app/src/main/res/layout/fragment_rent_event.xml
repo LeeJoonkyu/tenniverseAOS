@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.heejae.tenniverse.persentation.home.rent.event.EventViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        android:fillViewport="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:backgroundTint="@color/black"
+            style="@style/style_back_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_title"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/style_top_title"
+            android:text="@string/create_event"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_weight="1"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/style_rent_text"
+                    android:text="@string/event_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_rent_name"
+                    style="@style/style_input_rent_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_name"
+                        style="@style/style_input_edit"
+                        android:text="@={viewModel.name}"
+                        android:maxLength="7"
+                        android:afterTextChanged="@{() -> viewModel.validationName()}"
+                        android:hint="@string/hint_input_name" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    style="@style/style_rent_text"
+                    android:text="@string/event_phone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_rent_name" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_rent_phone"
+                    style="@style/style_input_rent_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_phone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_phone"
+                        style="@style/style_input_edit"
+                        android:text="@={viewModel.phone}"
+                        android:maxLength="11"
+                        android:inputType="number"
+                        android:afterTextChanged="@{() -> viewModel.validationPhone()}"
+                        android:hint="01012341234" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_place"
+                    style="@style/style_rent_text"
+                    android:text="@string/event_place"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_rent_phone" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_rent_place"
+                    style="@style/style_input_rent_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_place">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_place"
+                        style="@style/style_input_edit"
+                        android:text="@={viewModel.place}"
+                        android:afterTextChanged="@{() -> viewModel.validationPlace()}"
+                        android:hint="@string/hint_event_place" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    style="@style/style_calendar_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_rent_place"
+                    android:text="@{@string/hour_format_rent(viewModel.dayTime.title, viewModel.getTimeFormat)}"
+                    tools:text="오후 9:00" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    style="@style/style_calendar_text"
+                    android:layout_marginEnd="4dp"
+                    app:layout_constraintEnd_toStartOf="@id/tv_time"
+                    app:layout_constraintTop_toBottomOf="@id/til_rent_place"
+                    android:text="@{viewModel.dateFormat}"
+                    tools:text="2023.1.20" />
+
+                <TextView
+                    android:id="@+id/tv_calendar"
+                    style="@style/style_rent_text"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/game_calendar"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_date" />
+
+                <TextView
+                    android:id="@+id/tv_total_time"
+                    style="@style/style_rent_text"
+                    android:text="@string/total_time"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_date" />
+
+                <LinearLayout
+                    android:id="@+id/til_rent_total_time"
+                    style="@style/style_rent_edit_container"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toStartOf="@id/til_rent_max_people"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_total_time">
+
+                    <EditText
+                        android:id="@+id/et_rent_total_time"
+                        style="@style/style_rent_edit_text"
+                        android:text="@={viewModel.totalTime}"
+                        android:afterTextChanged="@{() -> viewModel.validationTotalTime()}"
+                        android:inputType="number">
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/tv_rent_total_time"
+                        style="@style/style_rent_edit_end_text"
+                        android:text="@string/edit_time"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_max_people"
+                    style="@style/style_rent_text"
+                    android:text="@string/max_people"
+                    app:layout_constraintStart_toStartOf="@id/til_rent_max_people"
+                    app:layout_constraintTop_toBottomOf="@id/tv_date" />
+
+                <LinearLayout
+                    android:id="@+id/til_rent_max_people"
+                    style="@style/style_rent_edit_container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/til_rent_total_time"
+                    app:layout_constraintTop_toBottomOf="@id/tv_max_people">
+
+                    <EditText
+                        android:id="@+id/et_max_people"
+                        style="@style/style_rent_edit_text"
+                        android:text="@={viewModel.maxMember}"
+                        android:afterTextChanged="@{() -> viewModel.validationMaxMember()}"
+                        android:inputType="number">
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/tv_rent_max_people"
+                        style="@style/style_rent_edit_end_text"
+                        android:text="@string/edit_people"/>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_bank"
+                    style="@style/style_rent_text"
+                    android:text="@string/bank"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_rent_max_people" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_rent_bank"
+                    style="@style/style_input_rent_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_bank">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_bank"
+                        style="@style/style_input_edit"
+                        android:text="@={viewModel.bank}"
+                        android:hint="@string/hint_bank" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_account"
+                    style="@style/style_rent_text"
+                    android:text="@string/account"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_rent_bank" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_rent_account"
+                    style="@style/style_input_rent_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_account">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_account"
+                        style="@style/style_input_edit"
+                        android:text="@={viewModel.account}"
+                        android:inputType="number"
+                        android:hint="@string/hint_account" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_significant"
+                    style="@style/style_rent_text"
+                    android:text="@string/significant"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_rent_account" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_rent_description"
+                    android:layout_height="120dp"
+                    style="@style/style_input_rent_layout"
+                    android:layout_marginBottom="65dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_significant"
+                    app:layout_constraintBottom_toTopOf="@id/btn_next">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_significant"
+                        android:layout_height="120dp"
+                        android:gravity="top"
+                        android:text="@={viewModel.des}"
+                        style="@style/style_input_edit"
+                        android:hint="@string/hint_significant" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_next"
+                    style="@style/style_home_btn"
+                    android:text="@string/create"
+                    android:enabled="@{viewModel.eventEnable}"
+                    android:backgroundTint="@{viewModel.eventEnable ? @color/green: @color/sub_light_gray}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

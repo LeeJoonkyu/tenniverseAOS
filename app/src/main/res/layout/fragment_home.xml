@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.heejae.tenniverse.domain.model.RentType"/>
+        <import type="com.heejae.tenniverse.domain.model.UserType"/>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.heejae.tenniverse.persentation.home.HomeViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="18dp"
+                android:src="@drawable/ic_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_tenniverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:fontFamily="@font/sc_dream_8"
+                android:src="@drawable/ic_tenniverse_name_logo"
+                android:text="@string/tenniverse"
+                app:layout_constraintBottom_toBottomOf="@id/iv_logo"
+                app:layout_constraintStart_toEndOf="@id/iv_logo"
+                app:layout_constraintTop_toTopOf="@id/iv_logo" />
+
+            <ImageView
+                android:id="@+id/iv_user_management"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="18dp"
+                android:visibility="@{viewModel.user.checkRegularUser() ? View.VISIBLE : View.GONE}"
+                android:src="@drawable/ic_user_management"
+                app:layout_constraintEnd_toStartOf="@id/iv_user"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_user"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="18dp"
+                android:src="@drawable/ic_user_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/iv_tenniverse"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="18dp"
+                    app:layout_constraintTop_toBottomOf="@id/iv_logo"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guide_begin"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_begin="16dp" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guide_end"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_end="16dp" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_recruit"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:background="@drawable/ic_border_recurit"
+                            android:paddingStart="17dp"
+                            android:paddingTop="15dp"
+                            android:paddingEnd="17dp"
+                            android:paddingBottom="15dp"
+                            app:layout_constraintEnd_toEndOf="@id/guide_end"
+                            app:layout_constraintStart_toStartOf="@id/guide_begin"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:fontFamily="@font/sc_dream_8"
+                                android:includeFontPadding="false"
+                                android:text="@string/tenniverse_kor"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_comment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/sc_dream_4"
+                                android:includeFontPadding="false"
+                                android:text="@string/recruit_new_team_member"
+                                android:textColor="@color/gray"
+                                android:textSize="13sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+                            <ImageView
+                                android:id="@+id/iv_c"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_marginTop="20dp"
+                                android:src="@drawable/ic_c"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_comment" />
+
+                            <TextView
+                                android:id="@+id/tv_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:fontFamily="@font/sc_dream_3"
+                                android:includeFontPadding="false"
+                                android:text="@string/master"
+                                android:textColor="@color/black"
+                                android:textSize="10sp"
+                                app:layout_constraintBottom_toBottomOf="@id/iv_c"
+                                app:layout_constraintStart_toEndOf="@id/iv_c"
+                                app:layout_constraintTop_toTopOf="@id/iv_c" />
+
+                            <ImageView
+                                android:id="@+id/iv_icon"
+                                android:layout_width="92dp"
+                                android:layout_height="92dp"
+                                android:src="@drawable/ic_tenniverse_logo"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.Group
+                            android:id="@+id/group_reservation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{viewModel.reservations.size() != 0 ? View.VISIBLE : View.GONE}"
+                            app:constraint_referenced_ids="tv_reserve, rv_reserve" />
+
+                        <TextView
+                            android:id="@+id/tv_reserve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sc_dream_8"
+                            android:includeFontPadding="false"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            android:text="@string/reserve_status"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:layout_constraintStart_toStartOf="@id/guide_begin"
+                            app:layout_constraintTop_toBottomOf="@id/cl_recruit" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_reserve"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/guide_begin"
+                            app:layout_constraintTop_toBottomOf="@id/tv_reserve" />
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tl_tennis"
+                            style="@style/Widget.App.TabLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/backgroundColor"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="@id/guide_end"
+                            app:layout_constraintStart_toStartOf="@id/guide_begin"
+                            app:layout_constraintTop_toBottomOf="@id/rv_reserve"
+                            app:tabGravity="fill"
+                            app:tabIndicatorColor="@color/black"
+                            app:tabIndicatorFullWidth="true"
+                            app:tabMinWidth="0dp"
+                            app:tabMode="scrollable"
+                            app:tabSelectedTextColor="@color/black"
+                            app:tabTextColor="@color/sub_light_gray">
+
+                            <com.google.android.material.tabs.TabItem
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/entire" />
+
+                            <com.google.android.material.tabs.TabItem
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rental_daily" />
+
+                            <com.google.android.material.tabs.TabItem
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rental_regular" />
+
+                            <com.google.android.material.tabs.TabItem
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/event_kor" />
+                        </com.google.android.material.tabs.TabLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_rent"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="@id/guide_end"
+                            app:layout_constraintStart_toStartOf="@id/guide_begin"
+                            app:layout_constraintTop_toBottomOf="@id/tl_tennis" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="50dp"
+            android:backgroundTint="@{viewModel.selectedRent == RentType.EVENT ? @color/yellow : @color/green}"
+            android:importantForAccessibility="no"
+            app:tint="@null"
+            android:src="@drawable/ic_tennis_man" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

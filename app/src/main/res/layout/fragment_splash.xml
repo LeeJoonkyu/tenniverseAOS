@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        >
+
+        <ImageView
+            android:id="@+id/iv_tenniverse_logo"
+            android:layout_width="136dp"
+            android:layout_height="136dp"
+            android:src="@drawable/ic_tenniverse_logo"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/iv_tenniverse_name"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_tenniverse_name"
+            android:layout_width="wrap_content"
+            android:layout_height="78dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_tenniverse_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_tenniverse_logo" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

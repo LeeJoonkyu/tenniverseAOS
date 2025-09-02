@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.heejae.tenniverse.persentation.main.MainViewModel.Gender"/>
+        <variable
+            name="viewModel"
+            type="com.heejae.tenniverse.persentation.main.MainViewModel" />
+        <variable
+            name="glide"
+            type="com.bumptech.glide.RequestManager" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_success_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="28sp"
+            tools:text="프로필 생성이 완료되었어요!"/>
+
+        <TextView
+            android:id="@+id/tv_add_profile_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_success_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
+            tools:text="마지막으로, 프로필 사진을 추가해볼까요?"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.profileImg.length() != 0 ? View.GONE : View.VISIBLE}"
+            app:constraint_referenced_ids="iv_plus, tv_profile_add"/>
+
+        <ImageView
+            android:id="@+id/iv_profile_img"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:adjustViewBounds="true"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginTop="50dp"
+            app:setGlide="@{glide}"
+            app:setUri="@{viewModel.profileImg}"
+            app:layout_constraintTop_toBottomOf="@id/tv_add_profile_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_name_gender"/>
+
+        <ImageView
+            android:id="@+id/iv_plus"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintTop_toTopOf="@id/iv_profile_img"
+            app:layout_constraintStart_toStartOf="@id/iv_profile_img"
+            app:layout_constraintEnd_toEndOf="@id/iv_profile_img"
+            app:layout_constraintBottom_toBottomOf="@id/iv_profile_img"/>
+
+        <TextView
+            android:id="@+id/tv_profile_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_regular"
+            android:includeFontPadding="false"
+            android:text="@string/add_profile"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/iv_plus"
+            app:layout_constraintStart_toStartOf="@id/iv_profile_img"
+            app:layout_constraintEnd_toEndOf="@id/iv_profile_img"/>
+
+        <TextView
+            android:id="@+id/tv_name_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:includeFontPadding="false"
+            android:text="@{@string/profile_name(viewModel.name, viewModel.gender.kor)}"
+            tools:text="홍길동 (남)"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_tennis_career"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_tennis_career"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="110dp"
+            android:fontFamily="@font/noto_sans_light"
+            android:includeFontPadding="false"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@{@string/profile_career(viewModel.career)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"
+            tools:text="테니스 경력 2년"/>
+        
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/style_login_next_btn"
+            android:text="@string/register"
+            android:onClick="@{() -> viewModel.uploadUser()}"
+            android:enabled="@{viewModel.profileImg.length() != 0}"
+            android:backgroundTint="@{viewModel.profileImg.length() != 0 ? @color/green: @color/sub_light_gray}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

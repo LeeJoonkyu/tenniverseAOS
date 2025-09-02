@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Tenniverse" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.Tenniverse" parent="Base.Theme.Tenniverse" >
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/backgroundColor</item>
+        <item name="materialTimePickerTheme">@style/Widget.App.TimePicker.Clock</item>
+        <item name="popupMenuStyle">@style/Widget.App.PopupMenu</item>
+    </style>
+
+
+</resources>
